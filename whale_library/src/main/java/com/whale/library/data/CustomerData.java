@@ -1,9 +1,15 @@
 package com.whale.library.data;
 
+/**
+ * CustomerData.java
+ *
+ * @author miseongShin
+ * @version 1.0 /2018. 7. 4.
+ */
 public class CustomerData {
-	
+
 	private int pk;
-	
+
 	private String id;
 
 	private String pw;
@@ -29,7 +35,7 @@ public class CustomerData {
 	}
 
 	public void setPw(final String pw) {
-		this.pw = pw; 
+		this.pw = pw;
 	}
 
 }

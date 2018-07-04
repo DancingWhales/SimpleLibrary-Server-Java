@@ -10,6 +10,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.whale.library.forms.CustomerForm;
 
+/**
+ * TestBasicController.java – For Study java basic
+ *
+ * @author miseongShin
+ * @version 1.0 /2018. 7. 4.
+ * 
+ */
 @Controller
 @RequestMapping(value = "/test")
 public class TestBasicController {
@@ -18,10 +25,13 @@ public class TestBasicController {
 	private static final Logger LOG = LoggerFactory.getLogger(TestBasicController.class);
 
 	private static final String TEST_PAGE = "test/dataChange";
+
 	private static final String PAGE_TYPE = "pageType";
+
 	private static final String TEST_DATA_CHANGE_PATTERN = "/{dataType:.*}";
 
 	private enum TestType {
+
 		INSERT, LIST, UPDATE, DELETE;
 
 		private static TestType getType(final String testType) {
@@ -38,7 +48,7 @@ public class TestBasicController {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String dataChange(final Model model) {
- 
+
 		model.addAttribute(PAGE_TYPE, TestType.LIST.name());
 		model.addAttribute(new CustomerForm());
 		return TEST_PAGE;
@@ -59,7 +69,8 @@ public class TestBasicController {
 	}
 
 	@RequestMapping(value = TEST_DATA_CHANGE_PATTERN, method = RequestMethod.POST)
-	public String dataChange(final Model model, @PathVariable("dataType") final String pageType, final CustomerForm dataChangeForm) {
+	public String dataChange(final Model model, @PathVariable("dataType") final String pageType,
+			final CustomerForm dataChangeForm) {
 
 		TestType testType = TestType.getType(pageType);
 
