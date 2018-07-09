@@ -10,12 +10,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.whale.library.forms.CustomerForm;
 
+
 /**
- * TestBasicController.java – For Study java basic
- *
- * @author miseongShin
- * @version 1.0 /2018. 7. 4.
+ * TestBasicController.java
+ *  기초 습득을 위한 컨트롤러
  * 
+ * @version 1.0 / 2018. 7. 9.
+ * @author miseong
+ *
  */
 @Controller
 @RequestMapping(value = "/test")
@@ -25,13 +27,13 @@ public class TestBasicController {
 	private static final Logger LOG = LoggerFactory.getLogger(TestBasicController.class);
 
 	private static final String TEST_PAGE = "test/dataChange";
-
+	
 	private static final String PAGE_TYPE = "pageType";
-
+	
 	private static final String TEST_DATA_CHANGE_PATTERN = "/{dataType:.*}";
 
 	private enum TestType {
-
+	
 		INSERT, LIST, UPDATE, DELETE;
 
 		private static TestType getType(final String testType) {
@@ -46,7 +48,17 @@ public class TestBasicController {
 		}
 	}
 
-	@RequestMapping(method = RequestMethod.GET)
+
+
+	/**
+	 * dataChange
+	 * -test 페이지 메인
+	 *
+	 * @param model
+	 * @return TEST_PAGE
+	 * @author miseong
+	 */
+	@RequestMapping (method = RequestMethod.GET)
 	public String dataChange(final Model model) {
 
 		model.addAttribute(PAGE_TYPE, TestType.LIST.name());
@@ -54,6 +66,15 @@ public class TestBasicController {
 		return TEST_PAGE;
 	}
 
+	/**
+	 * dataChange
+	 * -데이터 조회, 등록, 수정, 삭제를 위한 페이지
+	 *
+	 * @param model
+	 * @param dataType
+	 * @return TEST_PAGE
+	 * @author miseong
+	 */
 	@RequestMapping(value = TEST_DATA_CHANGE_PATTERN, method = RequestMethod.GET)
 	public String dataChange(final Model model, @PathVariable("dataType") final String dataType) {
 
@@ -68,6 +89,16 @@ public class TestBasicController {
 		return TEST_PAGE;
 	}
 
+	/**
+	 * dataChange
+	 * -데이터 조회, 등록, 수정, 삭제 페이지
+	 *
+	 * @param model
+	 * @param pageType
+	 * @param dataChangeForm
+	 * @return TEST_PAGE
+	 * @author miseong
+	 */
 	@RequestMapping(value = TEST_DATA_CHANGE_PATTERN, method = RequestMethod.POST)
 	public String dataChange(final Model model, @PathVariable("dataType") final String pageType,
 			final CustomerForm dataChangeForm) {
